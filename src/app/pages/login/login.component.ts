@@ -50,23 +50,21 @@ export class LoginComponent {
     //server request
     this.login.generateToken(this.loginData).subscribe(
       (data: any) => {
-        console.log('success');
-        console.log(data);
-
         //login...
         this.login.loginUser(data.token);
 
         this.login.getCurrentUser().subscribe((user: any) => {
           this.login.setUser(user);
-          console.log(user);
 
           //Redirect
           if (this.login.getUserRole() == 'ADMIN') {
             //admin dashboard
             this.router.navigate(['/admin']);
+            this.login.loginStatusSubject.next(true);
           } else if (this.login.getUserRole() == 'USER') {
             //user dashboard
             this.router.navigate(['/user-dashboard']);
+            this.login.loginStatusSubject.next(true);
           } else {
             this.login.logout();
           }

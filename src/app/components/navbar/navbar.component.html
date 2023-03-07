@@ -10,7 +10,7 @@
   <span>ExamPortal</span>
   <span class="example-spacer"></span>
   <a
-    *ngIf="!login.isLoggedIn()"
+    *ngIf="!isLoggedIn"
     [routerLink]="'/login'"
     mat-button
     class="example-icon favorite-icon"
@@ -19,7 +19,7 @@
     Login
   </a>
   <a
-    *ngIf="!login.isLoggedIn()"
+    *ngIf="!isLoggedIn"
     [routerLink]="'/signup'"
     mat-button
     class="example-icon favorite-icon ml20"
@@ -29,17 +29,18 @@
   </a>
 
   <button
-    *ngIf="login.isLoggedIn()"
+    *ngIf="isLoggedIn && user"
     mat-button
     class="example-icon favorite-icon ml20"
     aria-label="Example icon-button with heart icon"
+    routerLink="/admin/profile"
   >
     {{ login.getUser().username }}
   </button>
 
   <a
     (click)="logout()"
-    *ngIf="login.isLoggedIn()"
+    *ngIf="isLoggedIn"
     [routerLink]="'/signup'"
     mat-button
     class="example-icon favorite-icon ml20"
