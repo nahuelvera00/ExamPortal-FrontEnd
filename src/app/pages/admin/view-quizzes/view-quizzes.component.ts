@@ -10,7 +10,7 @@ import Swal from 'sweetalert2';
 export class ViewQuizzesComponent implements OnInit {
   quizzes = [
     {
-      qId: Number,
+      qid: Number,
       title: String,
       description: String,
       maxMarks: String,
@@ -30,12 +30,35 @@ export class ViewQuizzesComponent implements OnInit {
     this._quizService.getQuizzes().subscribe(
       (data: any) => {
         this.quizzes = data;
-        console.log(this.quizzes);
       },
       (error) => {
         console.log(error);
         Swal.fire('Error !', 'Error in loading data', 'error');
       }
     );
+  }
+
+  //Delete quiz
+  deleteQuiz(qId: any) {
+    Swal.fire({
+      icon: 'info',
+      title: 'Are you sure ?',
+      confirmButtonText: 'Delete',
+      showCancelButton: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        //delete
+        this._quizService.deleteQuiz(qId).subscribe(
+          (data) => {
+            this.quizzes = this.quizzes.filter((quiz) => quiz.qid != qId);
+            Swal.fire('Success!', 'Quiz deleted', 'success');
+          },
+          (error) => {
+            Swal.fire('Error!', 'Error in deleting quiz', 'error');
+            console.log(error);
+          }
+        );
+      }
+    });
   }
 }

@@ -22,6 +22,14 @@
       Edit
     </button>
     <button class="ml20" mat-stroked-button color="primary">Attemps</button>
+    <button
+      class="ml20"
+      mat-raised-button
+      color="warn"
+      (click)="deleteQuiz(q.qid)"
+    >
+      Delete
+    </button>
   </mat-card-actions>
 </mat-card>
 
