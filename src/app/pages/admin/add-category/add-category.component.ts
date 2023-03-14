@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { CategoryService } from 'src/app/services/category.service';
 import Swal from 'sweetalert2';
 
@@ -15,6 +16,7 @@ export class AddCategoryComponent implements OnInit {
   };
 
   constructor(
+    private router: Router,
     private _categoryService: CategoryService,
     private _snack: MatSnackBar
   ) {}
@@ -34,9 +36,19 @@ export class AddCategoryComponent implements OnInit {
     //All done
     this._categoryService.addCategory(this.category).subscribe(
       (data: any) => {
-        this.category.title = '';
-        this.category.description = '';
-        Swal.fire('Success !!', 'Category is added successfuly', 'success');
+        Swal.fire(
+          'Success !!',
+          'Category is added successfuly',
+          'success'
+        ).then((result) => {
+          if (result.isConfirmed) {
+            //Reset form
+            this.category.title = '';
+            this.category.description = '';
+            //Redirect
+            this.router.navigate(['/admin/categories']);
+          }
+        });
       },
       (error) => {
         console.log(error);

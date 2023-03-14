@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { CategoryService } from 'src/app/services/category.service';
 import { QuizService } from 'src/app/services/quiz.service';
 import Swal from 'sweetalert2';
@@ -31,6 +32,7 @@ export class AddQuizComponent implements OnInit {
   obj = {};
 
   constructor(
+    private router: Router,
     private _categoryService: CategoryService,
     private _quizSerice: QuizService,
     private _snackBar: MatSnackBar
@@ -75,17 +77,23 @@ export class AddQuizComponent implements OnInit {
     //call server
     this._quizSerice.addQuiz(this.quizData).subscribe(
       (data) => {
-        Swal.fire('Success !', 'Quiz is added', 'success');
-        this.quizData = {
-          title: '',
-          description: '',
-          maxMarks: '',
-          numberOfQuestions: '',
-          active: true,
-          category: {
-            cid: null,
-          },
-        };
+        Swal.fire('Success !', 'Quiz is added', 'success').then((result) => {
+          if (result.isConfirmed) {
+            //Reset form
+            this.quizData = {
+              title: '',
+              description: '',
+              maxMarks: '',
+              numberOfQuestions: '',
+              active: true,
+              category: {
+                cid: null,
+              },
+            };
+            //Redirect
+            this.router.navigate(['/admin/quizzes']);
+          }
+        });
       },
       (error) => {
         Swal.fire('Error !!', 'Error while adding quiz', 'error');
