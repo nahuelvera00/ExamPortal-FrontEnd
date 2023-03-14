@@ -1,11 +1,20 @@
 <mat-card>
-  <mat-card-header>
+  <mat-card-header class="header">
     <mat-card-title>Questions of {{ qTitle }}</mat-card-title>
+    <button
+      mat-raised-button
+      color="primary"
+      [routerLink]="'/admin/add-question/' + qId + '/' + qTitle"
+    >
+      Add Question
+    </button>
   </mat-card-header>
   <mat-card-content>
     <div class="bootstrap-wrapper">
       <div class="row">
         <div class="col-md-12">
+          <div class="container"></div>
+
           <mat-card *ngFor="let q of questions; let i = index" class="mt20">
             <mat-card-content>
               <p>

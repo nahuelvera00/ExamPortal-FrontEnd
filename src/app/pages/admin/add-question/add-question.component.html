@@ -1,1 +1,80 @@
-<p>add-question works!</p>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title
+      >New Question to
+      <span style="font-weight: bold">{{ quizTitle }}</span></mat-card-title
+    >
+    <mat-card-subtitle>Enter the details of the new question</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content class="mt20">
+    <div class="bootstrap-wrapper">
+      <div class="col-md-8 offset-md-2">
+        <form action="">
+          <!-- Content field -->
+          <mat-form-field class="w100" appearance="outline">
+            <mat-label> Write question content </mat-label>
+            <textarea
+              required
+              autofocus
+              type="text"
+              name="content"
+              rows="5"
+              matInput
+              placeholder="Enter here"
+            ></textarea>
+          </mat-form-field>
+
+          <!-- Options -->
+          <div class="row">
+            <div class="col-md-6">
+              <!-- Option 1 -->
+              <mat-form-field class="w100">
+                <mat-label>Enter Option 1</mat-label>
+                <input type="text" matInput />
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+              <!-- Option 2 -->
+              <mat-form-field class="w100">
+                <mat-label>Enter Option 2</mat-label>
+                <input type="text" matInput />
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <!-- Option 3 -->
+              <mat-form-field class="w100">
+                <mat-label>Enter Option 3</mat-label>
+                <input type="text" matInput />
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+              <!-- Option 4 -->
+              <mat-form-field class="w100">
+                <mat-label>Enter Option 4</mat-label>
+                <input type="text" matInput />
+              </mat-form-field>
+            </div>
+          </div>
+
+          <!-- Answer -->
+          <mat-form-field class="w100">
+            <mat-label>Select Answer</mat-label>
+            <mat-select>
+              <mat-option>Option 1</mat-option>
+              <mat-option>Option 2</mat-option>
+              <mat-option>Option 3</mat-option>
+              <mat-option>Option 4</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <div class="container text-center">
+            <button mat-raised-button color="primary">Add</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
