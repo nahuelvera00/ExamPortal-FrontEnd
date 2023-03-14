@@ -17,7 +17,12 @@
     <button class="ml20" mat-stroked-button color="primary">
       Questions: {{ q.numberOfQuestions }}
     </button>
-    <button class="ml20" mat-stroked-button color="primary">
+    <button
+      [routerLink]="'/admin/quiz/' + q.qid"
+      class="ml20"
+      mat-stroked-button
+      color="primary"
+    >
       <mat-icon matListItemIcon>edit</mat-icon>
       Edit
     </button>
