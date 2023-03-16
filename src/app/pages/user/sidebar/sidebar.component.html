@@ -1,0 +1,23 @@
+<mat-card>
+  <mat-action-list>
+    <div mat-subheader>Menu</div>
+
+    <!-- Home Button -->
+    <mat-list-item routerLink="/usser-dashboard">
+      <mat-icon matListItemIcon>home</mat-icon>
+      <div matListItemTitle>Home</div>
+    </mat-list-item>
+
+    <!-- All Quizzes Button -->
+    <mat-list-item routerLink="/usser-dashboard">
+      <mat-icon matListItemIcon>density_small</mat-icon>
+      <div matListItemTitle>All Quizzes</div>
+    </mat-list-item>
+
+    <!-- Categories Buttons -->
+    <mat-list-item *ngFor="let c of categories">
+      <mat-icon matListItemIcon>category</mat-icon>
+      <div matListItemTitle>{{ c.title }}</div>
+    </mat-list-item>
+  </mat-action-list>
+</mat-card>

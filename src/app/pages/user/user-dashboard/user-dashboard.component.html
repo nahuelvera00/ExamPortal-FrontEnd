@@ -1,1 +1,15 @@
-<h1>Welcome to user-dashboard</h1>
+<div class="bootstrap-wrapper">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3">
+        <app-sidebar-user></app-sidebar-user>
+      </div>
+      <div class="col-md-9">
+        <h3>
+          this is main container
+          <router-outlet></router-outlet>
+        </h3>
+      </div>
+    </div>
+  </div>
+</div>
