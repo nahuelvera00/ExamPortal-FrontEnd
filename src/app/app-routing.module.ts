@@ -13,6 +13,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { SignupComponent } from './pages/signup/signup.component';
+import { LoadQuizComponent } from './pages/user/load-quiz/load-quiz.component';
 import { UserDashboardComponent } from './pages/user/user-dashboard/user-dashboard.component';
 import { AdminGuard } from './services/admin.guard';
 import { UserGuard } from './services/user.guard';
@@ -79,8 +80,13 @@ const routes: Routes = [
   {
     path: 'user-dashboard',
     component: UserDashboardComponent,
-    pathMatch: 'full',
     canActivate: [UserGuard],
+    children: [
+      {
+        path: ':catId',
+        component: LoadQuizComponent,
+      },
+    ],
   },
 ];
 

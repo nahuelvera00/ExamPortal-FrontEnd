@@ -1,0 +1,18 @@
+.truncate {
+  display: block;
+  white-space: nowrap;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.image {
+  background-image: url("./../../../../assets/quiz.png");
+  background-size: cover;
+}
+
+.buttons {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
