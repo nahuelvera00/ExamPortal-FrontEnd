@@ -8,8 +8,13 @@ import baseUrl from './helper';
 export class QuestionService {
   constructor(private _http: HttpClient) {}
 
+  //Get all questions
   public getQuestionsOfQuiz(qId: any) {
     return this._http.get(`${baseUrl}/question/quiz/all/${qId}`);
+  }
+
+  public getQuestionsOfQuizForTest(qid: any) {
+    return this._http.get(`${baseUrl}/question/quiz/${qid}`);
   }
 
   //add question
