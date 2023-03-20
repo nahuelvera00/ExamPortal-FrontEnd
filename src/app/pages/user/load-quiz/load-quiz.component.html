@@ -24,7 +24,12 @@
               <button mat-button>Questions: {{ q.numberOfQuestions }}</button>
               <div>
                 <button mat-raised-button color="primary">View</button>
-                <button class="ml10" mat-raised-button color="accent">
+                <button
+                  class="ml10"
+                  mat-raised-button
+                  color="accent"
+                  [routerLink]="'/user-dashboard/instructions/' + q.qid"
+                >
                   Start
                 </button>
               </div>
