@@ -95,7 +95,7 @@ export class StartComponent implements OnInit {
     //call to server to eval questions
     this._questionService.evalQuiz(this.questions).subscribe(
       (data: any) => {
-        this.marksGot = data.marksGot;
+        this.marksGot = parseFloat(Number(data.marksGot).toFixed(2));
         this.correctAnswer = data.correctAnswer;
         this.attempted = data.attempted;
         this.isSubmit = true;
@@ -121,5 +121,9 @@ export class StartComponent implements OnInit {
     //   console.log('Correct answers: ' + this.correctAnswer);
     //   console.log('Marks got ' + this.marksGot);
     // });
+  }
+
+  printPage() {
+    window.print();
   }
 }
