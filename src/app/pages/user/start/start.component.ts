@@ -41,10 +41,9 @@ export class StartComponent implements OnInit {
 
         this.timer = this.questions.length * 2 * 60;
 
-        this.questions.forEach((q: any) => {
-          q['givenAnswer'] = '';
-        });
-        console.log(this.questions);
+        // this.questions.forEach((q: any) => {
+        //   q['givenAnswer'] = '';
+        // });
 
         this.startTimer();
       },
@@ -93,23 +92,34 @@ export class StartComponent implements OnInit {
   }
 
   evalQuiz() {
-    this.isSubmit = true;
+    //call to server to eval questions
+    this._questionService.evalQuiz(this.questions).subscribe(
+      (data: any) => {
+        this.marksGot = data.marksGot;
+        this.correctAnswer = data.correctAnswer;
+        this.attempted = data.attempted;
+        this.isSubmit = true;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
 
     //calculate
-    this.questions.forEach((q: any) => {
-      if (q.givenAnswer == q.answer) {
-        this.correctAnswer++;
-        let markSingle =
-          this.questions[0].quiz.maxMarks / this.questions.length;
-        this.marksGot += markSingle;
-      }
+    // this.questions.forEach((q: any) => {
+    //   if (q.givenAnswer == q.answer) {
+    //     this.correctAnswer++;
+    //     let markSingle =
+    //       this.questions[0].quiz.maxMarks / this.questions.length;
+    //     this.marksGot += markSingle;
+    //   }
 
-      if (q.givenAnswer.trim() != '') {
-        this.attempted++;
-      }
+    //   if (q.givenAnswer.trim() != '') {
+    //     this.attempted++;
+    //   }
 
-      console.log('Correct answers: ' + this.correctAnswer);
-      console.log('Marks got ' + this.marksGot);
-    });
+    //   console.log('Correct answers: ' + this.correctAnswer);
+    //   console.log('Marks got ' + this.marksGot);
+    // });
   }
 }
