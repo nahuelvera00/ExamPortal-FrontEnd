@@ -1,2 +1,2 @@
-let baseUrl = 'http://localhost:8081';
+let baseUrl = 'http://examsportal.net:8081';
 export default baseUrl;
